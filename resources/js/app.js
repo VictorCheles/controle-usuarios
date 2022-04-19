@@ -9,16 +9,8 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 /* Add Vuex */
+import store from './store/store';
 
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-    state:{
-        teste: 'Teste teste teste 2'
-    }
-})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,10 +22,10 @@ const store = new Vuex.Store({
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('header-component', require('./layout/HeaderComponent.vue').default);
-Vue.component('footer-component', require('./layout/FooterComponent.vue').default);
+//Components
+Vue.component('app-component', require('./AppComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
