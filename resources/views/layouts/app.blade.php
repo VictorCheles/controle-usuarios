@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div id="app">
+            <main>
+                @yield('content')
+            </main>
+        </div>
         <script src="{{asset('js/app.js')}}"></script>
     </body>
 </html>

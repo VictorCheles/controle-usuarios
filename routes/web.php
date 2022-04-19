@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
-Auth::routes();
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::get('/edit', function () {
+    return view('app-path.editUser');
+})->name('edit.user');
+
+Route::get('/list/users', function () {
+    return view('app-path.listUsers');
+})->name('list.users');
+
+

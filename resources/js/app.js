@@ -24,8 +24,20 @@ import store from './store/store';
 
 
 //Components
-Vue.component('app-component', require('./AppComponent.vue').default);
+    //NavBar
+    Vue.component('nav-bar-component', require('./components/navbar/NavBarComponent.vue').default);
 
+    //Login
+    Vue.component('login-component', require('./components/LoginComponent.vue').default);
+
+    //Registro de novo Usuário
+    Vue.component('register-user-component', require('./components/RegisterUserComponent.vue').default);
+
+    //Edição de usuário
+    Vue.component('edit-user-component', require('./components/controle-users/EditUserComponent.vue').default);
+
+    //Lista de Usuários cadastrados
+    Vue.component('list-users-component', require('./components/controle-users/ListUsersComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
