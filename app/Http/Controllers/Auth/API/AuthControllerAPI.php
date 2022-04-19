@@ -30,7 +30,10 @@ class AuthControllerAPI extends Controller
 
     public function logout()
     {
-        return 'logout';
+        auth('api')->logout();
+
+        return response()->json(['msg' => 'Você foi deslogado!']);
+        
     }
 
     public function refresh()
