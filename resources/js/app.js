@@ -11,6 +11,9 @@ window.Vue = require('vue').default;
 /* Add Vuex */
 import store from './store/store';
 
+/* Add Router */
+import router from './router';
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -24,6 +27,9 @@ import store from './store/store';
 
 
 //Components
+    //Principal APP
+    Vue.component('app-component', require('./AppComponent.vue').default);
+    
     //NavBar
     Vue.component('nav-bar-component', require('./components/navbar/NavBarComponent.vue').default);
 
@@ -39,6 +45,8 @@ import store from './store/store';
     //Lista de Usuários cadastrados
     Vue.component('list-users-component', require('./components/controle-users/ListUsersComponent.vue').default);
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -47,5 +55,6 @@ import store from './store/store';
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    router
 });

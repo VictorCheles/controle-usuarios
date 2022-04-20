@@ -1,6 +1,5 @@
 <template>
     <div class="login">
-        <nav-bar-component />
         <div class="container-fluid vh-100" style="margin-top:300px">
             <div class="" style="margin-top:200px">
                 <div class="rounded d-flex justify-content-center">
@@ -27,7 +26,7 @@
                                 </div>
                                 
                                 <p class="text-center mt-5">Você possue cadastro?
-                                    <span class="text-primary"><a href="/register" class="text-decoration-none">Cadastrar-se</a></span>
+                                    <span class="text-primary" ><router-link to="/register" class="text-decoration-none">Cadastrar-se</router-link></span>
                                 </p>
                                 <p class="text-center text-primary">Esqueceu a sua senha?</p>
                             </div>

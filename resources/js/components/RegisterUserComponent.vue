@@ -1,6 +1,5 @@
 <template>
   <div class="register-user">
-    <nav-bar-component />
     <div class="container-fluid vh-100">
       <div class="" style="margin-top:200px">
           <div class="rounded d-flex justify-content-center">
@@ -62,7 +61,7 @@
                           <button class="btn btn-primary" type="button" @click="gravar()"><span></span> Gravar</button>
                       </div>
                       <p class="text-center mt-3">Já tem cadastro?
-                          <span class="text-primary"><a href="/" class="text-decoration-none">Entrar</a></span>
+                          <span class="text-primary"><router-link to="/" class="text-decoration-none">Entrar</router-link></span>
                       </p>
                   </div>
               </div>
