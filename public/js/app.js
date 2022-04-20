@@ -5337,6 +5337,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     login: function login() {
+      var _this = this;
+
       var formData = new FormData();
       formData.append('email', this.email);
       formData.append('password', this.password);
@@ -5348,8 +5350,11 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post(this.url, formData, config).then(function (response) {
         console.log(response.data.access_token);
-        window.location.href = '/edit';
+
+        _this.$router.push('/register');
       })["catch"](function (e) {
+        _this.$router.push('/register');
+
         console.log(e.message);
       });
     }

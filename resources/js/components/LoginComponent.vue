@@ -63,9 +63,10 @@ export default {
             axios.post(this.url,formData,config)
                 .then((response) => {
                     console.log(response.data.access_token)
-                    window.location.href = '/edit';
+                    this.$router.push('/register')
                 })
                 .catch((e) => {
+                    this.$router.push('/register')
                     console.log(e.message)
                 })
         }
