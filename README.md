@@ -8,10 +8,10 @@
 Primeiro passo, clonar o projeto:
 ``` bash
 # Clonar
-git clone https://github.com/carlosfgti/laravel-com-vue-exemplo.git
+git clone https://github.com/VictorCheles/controle-usuarios.git
 
 # Acessar
-cd laravel-com-vue-exemplo
+cd controle-usuarios
 ```
 
 ## Configuração - Backend
@@ -37,7 +37,7 @@ php artisan storage:link
 ## Login
 O usuário de teste é:
 ```
-email:    carlos@especializati.com.br
+email:    contato@devcheles.com.br
 password: 123456
 ```
 
