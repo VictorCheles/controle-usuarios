@@ -1,8 +1,8 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-# Projeto Prático de Laravel + JWT + Vue JS + Axios + Vuex + VueRouter + Boas Práticas
+# Projeto Prático de Laravel + JWT + Vue JS + Axios + Vuex + VueRouter
 
-> Exemplo básico Laravel com Vue JS
+>Laravel com Vue JS
 
 ## Baixar o projeto
 Primeiro passo, clonar o projeto:
@@ -13,6 +13,27 @@ git clone https://github.com/VictorCheles/controle-usuarios.git
 # Acessar
 cd controle-usuarios
 ```
+
+## Configuração - Banco de Dados
+
+``` bash
+# Criar DATABASE como o nome: 
+controle_usuarios
+
+# Configurar variáveis de ambiente
+cp .env.example .env
+php artisan key:generate
+
+# Configuração do JWT
+php artisan jwt:secret
+
+# Criar migrations (tabelas e Seeders)
+php artisan migrate --seed
+
+# Criar link simbólico storage/app/public para public/storage/
+php artisan storage:link
+```
+
 
 ## Configuração - Backend
 
@@ -53,5 +74,6 @@ npm run dev
 npm run build
 ```
 
-## Deseja Aprender Laravel com Vue JS?
-Recomendo que se matricule no meu treinamento de Laravel com Vue JS ([Saiba Mais](https://www.especializati.com.br/curso-laravel-vue-js)). 
+## Iniciar o servidor web
+
+php artisan serve
