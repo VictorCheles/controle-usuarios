@@ -66,7 +66,6 @@ export default {
                     this.$router.push('/register')
                 })
                 .catch((e) => {
-                    this.$router.push('/register')
                     console.log(e.message)
                 })
         }

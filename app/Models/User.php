@@ -72,13 +72,13 @@ class User extends Authenticatable implements JWTSubject
     public function rules()
     {
         return [
-            'name' => 'require|string|min:5|max:255',
-            'email' => 'require|unique:users|email|string|max:255',
-            'telephone_ddd' => 'require|integer|max:2',
-            'telephone' => 'require|integer|max:9',
+            'name' => 'required|string|min:5|max:255',
+            'email' => 'required|unique:users|email|string|max:255',
+            'telephone_ddd' => 'required|integer',
+            'telephone' => 'required|integer',
             'telephone_whatsapp' => 'boolean',
-            'profile_picture' => 'require',
-            'password' => 'require|confirmed|string|min:8',
+            'profile_picture' => 'required',
+            'password' => 'required|confirmed|string|min:8',
         ];
     }
 
@@ -88,7 +88,7 @@ class User extends Authenticatable implements JWTSubject
             'telephone.integer' => 'Preencha o telefone apenas com números',
             'telephone_ddd.integer' => 'Preencha o DDD apenas com números',
             'email.unique' => 'Email já cadastrado no sistema',
-            'profile_picture.require' => 'Insira uma imagem de perfil',
+            'profile_picture.required' => 'Insira uma imagem de perfil',
             'boolean' => 'O dado enviado não segue o padrão exigido'
         ];
     }

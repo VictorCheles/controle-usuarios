@@ -5353,8 +5353,6 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$router.push('/register');
       })["catch"](function (e) {
-        _this.$router.push('/register');
-
         console.log(e.message);
       });
     }
