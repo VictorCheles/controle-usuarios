@@ -19,21 +19,7 @@ cd controle-usuarios
 ``` bash
 # Criar DATABASE como o nome: 
 controle_usuarios
-
-# Configurar variáveis de ambiente
-cp .env.example .env
-php artisan key:generate
-
-# Configuração do JWT
-php artisan jwt:secret
-
-# Criar migrations (tabelas e Seeders)
-php artisan migrate --seed
-
-# Criar link simbólico storage/app/public para public/storage/
-php artisan storage:link
 ```
-
 
 ## Configuração - Backend
 
