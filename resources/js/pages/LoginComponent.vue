@@ -1,10 +1,19 @@
 <template>
     <div class="login">
-        <div class="container-fluid vh-100" style="margin-top:300px">
-            <div class="" style="margin-top:200px">
-                <div class="rounded d-flex justify-content-center">
+                
+        <div class="container-fluid vh-100">
+    
+            <div class="" style="margin-top:100px">
+                <alert-component
+                    :type="typeAlert"
+                    :class="displayAlert"
+                >
+                    {{msgAlert}}
+                </alert-component>
+                <div class="rounded d-flex justify-content-center">     
                     <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
                         <div class="text-center">
+                          
                             <h3 class="text-primary">Controle de Usuários</h3>
                         </div>
                             <div class="p-4">
@@ -24,7 +33,7 @@
                                         Entrar
                                     </button>
                                 </div>
-                                
+                                  
                                 <p class="text-center mt-5">Você possue cadastro?
                                     <span class="text-primary" ><router-link to="/register" class="text-decoration-none">Cadastrar-se</router-link></span>
                                 </p>
@@ -43,7 +52,10 @@ export default {
         return{
             url: 'http://127.0.0.1:8000/api/login',
             email:'',
-            password:''
+            password:'',
+            msgAlert:'',
+            typeAlert:'',
+            displayAlert:'d-none',
         }
     },
     methods:{
@@ -62,11 +74,18 @@ export default {
 
             axios.post(this.url,formData,config)
                 .then((response) => {
-                    console.log(response.data.access_token)
-                    this.$router.push('/register')
+                    this.$store.dispatch('token',response.data.access_token)
+                    this.displayAlert = 'd-inline'
+                    this.typeAlert = 'success'
+                    this.msgAlert = 'Sucesso! Você será direcionado ao sistema!'
+                    this.$router.push({name:'list'})
                 })
                 .catch((e) => {
-                    console.log(e.message)
+                    console.log(e.response)
+
+                    this.displayAlert = 'd-inline'
+                    this.typeAlert = 'danger'
+                    this.msgAlert = 'Usuário ou Senha não conferem!'
                 })
         }
     }

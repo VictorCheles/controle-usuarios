@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->integer('telephone_ddd');
             $table->integer('telephone');
-            $table->boolean('telephone_whatsapp')->default(false);
+            $table->boolean('telephone_whatsapp')->default(0);
             $table->string('profile_picture');
             $table->string('password');
             $table->rememberToken();

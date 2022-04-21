@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{complement?}', function () {
+Route::get('/{complement?}/{complement2?}', function () {
     return view('index');
 })->name('index');
 

@@ -54,11 +54,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validacao = $this->validation($request->all());
-
+        
         if($validacao) return $validacao;
-
+        
         $save = $this->user->create([
             'name' => $request->name,
             'email' => $request->email,
@@ -99,10 +98,17 @@ class UsersController extends Controller
      */
     public function update(Request $request,User $user)
     {
-
     //falta a validacao
 
-        $user->fill($request->all());
+        $user->fill([
+            'name' => $request->name,
+            'email' => $request->email,
+            'telephone_ddd' => $request->telephone_ddd,
+            'telephone' => $request->telephone,
+            'telephone_whatsapp' => $request->telephone_whatsapp,
+            'profile_picture' => $request->profile_picture,
+            'password' => $request->password != "" ? Hash::make($request->password) : $user->password,
+        ]);
 
         if($save = $user->save())
         {

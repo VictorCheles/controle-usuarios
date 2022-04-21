@@ -76,8 +76,8 @@ class User extends Authenticatable implements JWTSubject
             'email' => 'required|unique:users|email|string|max:255',
             'telephone_ddd' => 'required|integer',
             'telephone' => 'required|integer',
-            'telephone_whatsapp' => 'boolean',
-            'profile_picture' => 'required',
+            'telephone_whatsapp' => 'sometimes|boolean',
+            'profile_picture' => '',
             'password' => 'required|confirmed|string|min:8',
         ];
     }
@@ -89,7 +89,9 @@ class User extends Authenticatable implements JWTSubject
             'telephone_ddd.integer' => 'Preencha o DDD apenas com números',
             'email.unique' => 'Email já cadastrado no sistema',
             'profile_picture.required' => 'Insira uma imagem de perfil',
-            'boolean' => 'O dado enviado não segue o padrão exigido'
+            'boolean' => 'O dado enviado não segue o padrão exigido',
+            'email' => 'Os dados informado não segue o padrão de EMAIL',
+            'password.confirmed' => 'As senhas não conferem!'
         ];
     }
 }

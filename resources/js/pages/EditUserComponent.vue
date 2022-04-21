@@ -1,6 +1,6 @@
 <template>
     <div class="edit-user">
-        <nav-bar-component />
+<p>Edit User</p>
     </div>
 </template>
 
