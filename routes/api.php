@@ -24,6 +24,7 @@ Route::post('/register/user', 'App\Http\Controllers\Users\UsersController@store'
 Route::middleware(['apiJwt'])->group(function(){
     
     Route::get('/show/user/{id}', 'App\Http\Controllers\Users\UsersController@show');
+    Route::get('/show/user/photo/{id}', 'App\Http\Controllers\Users\UploadController@show');
     Route::post('/edit/user/{user}', 'App\Http\Controllers\Users\UsersController@update');
     Route::delete('/destroy/user/{user}', 'App\Http\Controllers\Users\UsersController@destroy');
     Route::get('/list/users', 'App\Http\Controllers\Users\UsersController@index');

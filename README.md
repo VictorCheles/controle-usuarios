@@ -19,6 +19,15 @@ cd controle-usuarios
 ``` bash
 # Criar DATABASE como o nome: 
 controle_usuarios
+
+#Usuario e Senha do MySql
+Por padrão:
+    DB_PORT=3306
+    DB_DATABASE=controle_usuarios
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+Para configuração personalizada, acesseo arquivo: .env na raiz do projeto
 ```
 
 ## Configuração - Backend
@@ -29,6 +38,7 @@ composer install
 
 # Configurar variáveis de ambiente
 cp .env.example .env
+
 php artisan key:generate
 
 # Configuração do JWT
@@ -41,6 +51,15 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 
+## Configuração - Frontend
+``` bash
+# Atualizar dependências
+npm install
+
+## Iniciar o servidor web
+php artisan serve --port=8000
+
+
 ## Login
 O usuário de teste é:
 ```
@@ -48,18 +67,11 @@ email:    contato@devcheles.com.br
 password: 123456
 ```
 
-## Configuração - Frontend
-``` bash
-# Atualizar dependências
-npm install
 
-# Rodar em ambiente local localhost:8080
-npm run dev
+----
 
-# Rodar em ambiente de produção
-npm run build
-```
+## OBSERVAÇÃO
 
-## Iniciar o servidor web
-
-php artisan serve
+Caso faça uso do PHP8, porderá aprsentar falha na instalação da dependencia: tymon/jwt-auth
+Neste caso execute o comando:
+    composer require tymon/jwt-auth:dev-develop --prefer-source

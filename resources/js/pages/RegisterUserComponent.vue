@@ -3,7 +3,6 @@
     <form-edit-register-user-component 
       :title="title"
       :edit="idUser"
-
     />
   </div>
 </template>

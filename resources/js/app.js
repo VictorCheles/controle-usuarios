@@ -14,6 +14,9 @@ import store from './store/store';
 /* Add Router */
 import router from './router';
 
+/* Config Axios */
+import './config/axios'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -52,9 +55,6 @@ import router from './router';
 
     //Registro de novo Usuário
     Vue.component('register-user-component', require('./pages/RegisterUserComponent.vue').default);
-
-    //Edição de usuário
-    Vue.component('edit-user-component', require('./pages/EditUserComponent.vue').default);
 
     //Lista de Usuários cadastrados
     Vue.component('list-users-component', require('./pages/ListUsersComponent.vue').default);

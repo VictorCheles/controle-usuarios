@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+use App\Models\Upload;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -25,7 +26,6 @@ class User extends Authenticatable implements JWTSubject
         'telephone_ddd',
         'telephone',
         'telephone_whatsapp',
-        'profile_picture',
         'password',
     ];
 
@@ -77,21 +77,25 @@ class User extends Authenticatable implements JWTSubject
             'telephone_ddd' => 'required|integer',
             'telephone' => 'required|integer',
             'telephone_whatsapp' => 'sometimes|boolean',
-            'profile_picture' => '',
             'password' => 'required|confirmed|string|min:8',
         ];
     }
 
-    public function feedback(){
+    public function feedback()
+    {
         return [
             'required' => 'Campo de preenchimento obrigatório',
             'telephone.integer' => 'Preencha o telefone apenas com números',
             'telephone_ddd.integer' => 'Preencha o DDD apenas com números',
             'email.unique' => 'Email já cadastrado no sistema',
-            'profile_picture.required' => 'Insira uma imagem de perfil',
             'boolean' => 'O dado enviado não segue o padrão exigido',
             'email' => 'Os dados informado não segue o padrão de EMAIL',
             'password.confirmed' => 'As senhas não conferem!'
         ];
+    }
+
+    public function photo()
+    {
+        return $this->hasOne(Upload::class);
     }
 }

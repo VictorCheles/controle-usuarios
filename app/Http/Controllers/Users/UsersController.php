@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use \Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 
+use App\Http\Controllers\Users\UploadController;
+
 use App\Models\User;
 
 class UsersController extends Controller
@@ -64,14 +66,22 @@ class UsersController extends Controller
             'telephone_ddd' => $request->telephone_ddd,
             'telephone' => $request->telephone,
             'telephone_whatsapp' => $request->telephone_whatsapp,
-            'profile_picture' => $request->profile_picture,
             'password' => Hash::make($request->password),
         ]);
         
 
         if($save)
         {
-            return response()->json(['success' => $save], 201);
+            if($request->file('new_file') !== NULL){
+                $save_file = new UploadController();
+                $response = $save_file->store($request->file('new_file'),$save->id);
+
+                if($response){
+                    return response()->json(['success' => $save,'photo' => true], 201);
+                }
+
+            }
+            return response()->json(['success' => $save, 'photo' => false], 201);
         }
 
         return response()->json(['errors' =>['error' =>'Ocorreu um erro inesperado!'],'request' => $request->all()], 400);
@@ -86,7 +96,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->user->where('id',$id)->first());
+        return response()->json($this->user->where('id',$id)->with('photo')->first());
     }
 
     /**
@@ -98,7 +108,9 @@ class UsersController extends Controller
      */
     public function update(Request $request,User $user)
     {
-    //falta a validacao
+        $validacao = $this->validation($request->all());
+        
+        if($validacao) return $validacao;
 
         $user->fill([
             'name' => $request->name,
@@ -106,13 +118,22 @@ class UsersController extends Controller
             'telephone_ddd' => $request->telephone_ddd,
             'telephone' => $request->telephone,
             'telephone_whatsapp' => $request->telephone_whatsapp,
-            'profile_picture' => $request->profile_picture,
             'password' => $request->password != "" ? Hash::make($request->password) : $user->password,
         ]);
 
         if($save = $user->save())
         {
-            return response()->json(['success' => $save], 201);
+            if($request->file('new_file') !== NULL){
+                $save_file = new UploadController();
+                $response = $save_file->store($request->file('new_file'),$user->id);
+
+                if($response){
+                    return $response;
+                    return response()->json(['success' => $save,'photo' => true], 201);
+                }
+
+            }
+            return response()->json(['success' => $save, 'photo' => false], 201);
         }
 
         return response()->json(['errors' =>['error' =>'Ocorreu um erro inesperado!'],'request' => $request->all()], 400);

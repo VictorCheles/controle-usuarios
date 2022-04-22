@@ -5,7 +5,6 @@ import store from './store/store';
 import LoginComponent from './pages/LoginComponent.vue'
 import RegisterComponent from './pages/RegisterUserComponent.vue'
 
-import EditUserComponent from './pages/EditUserComponent.vue'
 import ListUsersComponent from './pages/ListUsersComponent.vue'
 
 Vue.use(Router)

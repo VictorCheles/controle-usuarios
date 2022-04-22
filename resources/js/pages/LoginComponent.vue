@@ -50,7 +50,7 @@
 export default {
     data(){
         return{
-            url: 'http://127.0.0.1:8000/api/login',
+            url: 'login',
             email:'',
             password:'',
             msgAlert:'',
@@ -81,8 +81,6 @@ export default {
                     this.$router.push({name:'list'})
                 })
                 .catch((e) => {
-                    console.log(e.response)
-
                     this.displayAlert = 'd-inline'
                     this.typeAlert = 'danger'
                     this.msgAlert = 'Usuário ou Senha não conferem!'

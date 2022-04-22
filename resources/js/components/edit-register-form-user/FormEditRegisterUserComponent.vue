@@ -15,8 +15,9 @@
                     </div>
                   </div>
                 </alert-component>
+                
           <div class="rounded d-flex justify-content-center">
-              <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+              <div class="col-md-6 col-sm-12 shadow-lg p-5 bg-light">
                   <div class="text-center">
                       <h3 class="text-primary">{{title}}</h3>
                   </div>
@@ -67,13 +68,19 @@
                       <div class="input-group mb-3">
                         <label for="inputGroupFile04" class="form-label">Selecione uma imagem para o seu perfil:</label> 
                         <div class="input-group">
-                          <input type="file" class="form-control" name="profile_picture" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" @change="profile_photo">
+                          <input type="file" class="form-control" name="profile_picture" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" @change="newFile">
+                        </div>
+                        <div class="mx-auto my-2 bg-photo-profile" v-if="photo" >
+                          <img :src="'http://127.0.0.1:8000/storage/'+photo" width="150" alt="">
+                        </div>
+                        <div class="d-grid col-12 mx-auto" v-if="photo">
+                          <p class="text-center">Imagem de Perfil</p>
                         </div>
                       </div>
                       <div class="d-grid col-12 mx-auto">
                           <button class="btn btn-primary" type="button" @click="enviar(id)"><span></span> Gravar</button>
                       </div>
-                      <p class="text-center mt-3" v-if="!id">Já tem cadastro?
+                      <p class="text-center mt-3" v-if="!this.$store.getters.token.login.token">Já tem cadastro?
                           <span class="text-primary"><router-link to="/" class="text-decoration-none">Entrar</router-link></span>
                       </p>
                   </div>
@@ -81,7 +88,6 @@
           </div>
       </div>
     </div>
-    {{dadosUser}}
   </div>
 </template>
 
@@ -98,42 +104,73 @@ export default {
       telephone_whatsapp:0,
       password:'',
       password_confirmation:'',
-      profile_photo:[],
+      profile_photo:'',
       msgAlert:'',
       typeAlert:'',
       displayAlert:'d-none',
       msgErrors:'',
+      photo:false
     }
   },
-  computed: {
+  watch:{
+    edit(to,from){
+      if(from == true){
+        this.id=''
+        this.name=''
+        this.email=''
+        this.telephone_ddd=''
+        this.telephone=''
+        this.telephone_whatsapp=0
+        this.password=''
+        this.password_confirmation=''
+        this.profile_photo=''
+        this.msgAlert=''
+        this.typeAlert=''
+        this.displayAlert='d-none'
+        this.msgErrors=''
+        this.photo=false
+      }
+    }
+  },
+  mounted(){
+    this.dadosUser()
+  },
+  methods:{
     dadosUser() {
       if(!this.edit) return false
       this.consultUser(this.edit)
-    }
-  },
-  methods:{
+    },
     consultUser(id){
-        let config = {
-            headers:{
-                'Content-Type' : 'multipart/form-data',
-                'Accept' : 'application/json',
-                'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
-            }
-        }
+      let config = {
+          headers:{
+              'Content-Type' : 'multipart/form-data',
+              'Accept' : 'application/json',
+              'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
+          }
+      }
 
-        axios.get(`http://127.0.0.1:8000/api/show/user/${id}`,config)
-            .then((response) => {
-              this.name = response.data.name
-              this.email = response.data.email
-              this.telephone_ddd = response.data.telephone_ddd
-              this.telephone = response.data.telephone,
-              this.telephone_whatsapp = response.data.telephone_whatsapp
-            })
-            .catch((e) => {
-                this.displayAlert = 'd-inline'
-                this.typeAlert = 'danger'
-                this.msgAlert = 'Erro ao tentar acessar os dados do usuário! - Status: '+ e.response.status
-            })
+      axios.get(`show/user/${id}`,config)
+          .then((response) => {
+
+            this.name = response.data.name
+            this.email = response.data.email
+            this.telephone_ddd = response.data.telephone_ddd
+            this.telephone = response.data.telephone,
+            this.telephone_whatsapp = response.data.telephone_whatsapp
+            if(response.data.photo != null){
+              this.photo = response.data.photo.url
+            }
+            
+            
+          })
+          .catch((e) => {
+              this.displayAlert = 'd-inline'
+              this.typeAlert = 'danger'
+              this.msgAlert = 'Erro ao tentar acessar os dados do usuário! - Status: '+ e.response.status
+          })
+    },
+    newFile(event){
+      this.profile_photo = event.target.files[0]
     },
     enviar(id){
       if(id){
@@ -141,10 +178,9 @@ export default {
       }else{
         this.gravar()
       }
-
     },
     gravar(){
-      let url = 'http://127.0.0.1:8000/api/register/user'
+      let url = 'register/user'
 
       let config = {
           headers:{
@@ -160,12 +196,11 @@ export default {
         formData.append('telephone_whatsapp',(this.telephone_whatsapp == false ? 0 : 1))
         formData.append('password',this.password)
         formData.append('password_confirmation',this.password_confirmation)
-        formData.append('profile_picture','teste')
+        formData.append('new_file',this.profile_photo)
       
       
       axios.post(url,formData,config)
         .then((response) => {
-          console.log(response)
             this.displayAlert = 'd-inline'
             this.typeAlert = 'success'
             this.msgAlert = 'Sucesso! Registro realizado com sucesso!'
@@ -176,11 +211,10 @@ export default {
             this.typeAlert = 'danger'
             this.msgAlert = 'Erro ao tentar gravar os dados! - Status: '+ e.response.status
             this.msgErrors = e.response.data.errors
-            console.log(e.response)
         })
     },
     editar(id){
-      let url = `http://127.0.0.1:8000/api/edit/user/${id}`
+      let url = `edit/user/${id}`
       let config = {
           headers:{
               'Content-Type' : 'multipart/form-data',
@@ -197,21 +231,22 @@ export default {
         formData.append('telephone_whatsapp',this.telephone_whatsapp)
         formData.append('password',this.password)
         formData.append('password_confirmation',this.password_confirmation)
-        formData.append('profile_picture','teste')
+        formData.append('new_file',this.profile_photo)
       
       axios.post(url,formData,config)
         .then((response) => {
-            console.log(response)
             this.displayAlert = 'd-inline'
             this.typeAlert = 'success'
             this.msgAlert = 'Sucesso! Edição realizada com sucesso!'
-            setTimeout( () => this.$router.push({ name: 'list'}), 3000)
+            this.consultUser(this.edit)
+            
+            //setTimeout( () => this.$router.push({ name: 'list'}), 3000)
         })
         .catch((e) => {
-            console.log(e.response)
             this.displayAlert = 'd-inline'
             this.typeAlert = 'danger'
             this.msgAlert = 'Erro ao tentar editar os dados! - Status: '+ e.response.status
+            this.msgErrors = e.response.data.errors
         })
     }
   }
@@ -219,5 +254,12 @@ export default {
 </script>
 
 <style>
-
+.bg-photo-profile{
+  background-color: #ccc;
+  padding: 15px;
+  border-radius: 50% !important;
+}
+.bg-photo-profile img{
+    border-radius: 50%;
+}
 </style>

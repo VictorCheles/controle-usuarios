@@ -8,6 +8,9 @@
                 >
                     {{msgAlert}}
                 </alert-component>
+                <div class="text-center">
+                      <h3 class="text-primary">Lista de Usuários</h3>
+                  </div>
             <table class="table bg-white rounded border">
                 <thead>
                     <tr>
@@ -36,7 +39,6 @@
             </table>
         </div>
     </div>
-    <modal-component />
 </div>
 </template>
 
@@ -45,7 +47,7 @@ export default {
     data(){
         return{
             listItens:[],
-            url:'http://127.0.0.1:8000/api/list/users',
+            url:'list/users',
             msgAlert:'',
             typeAlert:'',
             displayAlert:'d-none',
@@ -63,7 +65,7 @@ export default {
                     'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
                 }
             }
-            console.log(config)
+
             axios.get(this.url,config)
                 .then((response) => {
                         this.listItens = response.data
@@ -83,7 +85,6 @@ export default {
                     'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
                 }
             }
-            console.log(config)
             axios.delete(url,config)
                 .then((response) => {
                     this.displayAlert = 'd-inline'

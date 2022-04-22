@@ -20,7 +20,6 @@ class UsersTableSeeder extends Seeder
             'telephone' => 999999999,
             'telephone_ddd' => 11,
             'telephone_whatsapp' => 1,
-            'profile_picture' => '/',
             'password'  => bcrypt('123456'),
         ]);
     }

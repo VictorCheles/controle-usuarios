@@ -15,6 +15,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                     <li><router-link to="/list" class="text-decoration-none"><a class="dropdown-item" href="#">Lista de Usuários</a></router-link></li>
+                    <li><router-link to="/register" class="text-decoration-none"><a class="dropdown-item" href="#">Novo Usuários</a></router-link></li>
                 </ul>
             </li>
         </ul>
