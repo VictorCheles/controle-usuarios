@@ -75,4 +75,4 @@ password: 123456
 Com o uso do PHP8, uma imcompatibilidade porderá ser apresentada na instalação da dependencia: tymon/jwt-auth.
 Neste caso execute o comando:
     
-  #  composer require tymon/jwt-auth:dev-develop --prefer-source
+- composer require tymon/jwt-auth:dev-develop --prefer-source
