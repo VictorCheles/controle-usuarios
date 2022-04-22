@@ -1385,7 +1385,7 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "3.3.3",
+            "version": "3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",

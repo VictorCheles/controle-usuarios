@@ -35,6 +35,16 @@ Para configuração personalizada, acesseo arquivo: .env na raiz do projeto
 ``` bash
 # Instalar dependências do projeto
 composer install
+    # Correção de incompatibilidade com PHP 8, que será apresentada no terminal da seguinte forma:
+        Problem 1
+            - lcobucci/jwt is locked to version 4.0 and an update of this package was not requested.
+            - lcobucci/jwt 4.0 requires php ^5.6 || ^7.0 -> your php version (8.1.2) does not satisfy that requirement.
+        Problem 2
+            - tymon/jwt-auth is locked to version 1.0.2 and an update of this package was not requested.
+            - tymon/jwt-auth 1.0.2 requires lcobucci/jwt <3.4 -> found lcobucci/jwt[4.0] but it does not match the constraint.
+        
+        # Correção:
+           - composer require tymon/jwt-auth --with-all-dependencies
 
 # Configurar variáveis de ambiente
 cp .env.example .env
@@ -63,16 +73,6 @@ php artisan serve --port=8000
 ## Login
 O usuário de teste é:
 
-email:    contato@devcheles.com.br
-password: 123456
+EMAIL: contato@devcheles.com.br
+SENHA: 123456
 ```
-
-
-----
-
-## OBSERVAÇÃO
-
-Com o uso do PHP8, uma imcompatibilidade porderá ser apresentada na instalação da dependencia: tymon/jwt-auth.
-Neste caso execute o comando:
-    
-- composer require tymon/jwt-auth:dev-develop --prefer-source
