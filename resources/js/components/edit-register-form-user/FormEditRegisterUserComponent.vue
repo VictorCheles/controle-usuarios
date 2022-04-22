@@ -222,15 +222,18 @@ export default {
               'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
           }
       }
-
       let formData = new FormData();
         formData.append('name',this.name)
         formData.append('email',this.email)
         formData.append('telephone_ddd',this.telephone_ddd)
         formData.append('telephone',this.telephone)
         formData.append('telephone_whatsapp',this.telephone_whatsapp)
-        formData.append('password',this.password)
-        formData.append('password_confirmation',this.password_confirmation)
+
+        if(this.password !== ''){
+          formData.append('password',this.password)
+          formData.append('password_confirmation',this.password_confirmation)
+        }
+        
         formData.append('new_file',this.profile_photo)
       
       axios.post(url,formData,config)

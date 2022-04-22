@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Validation\Rule;
 
 use App\Models\Upload;
 
@@ -69,15 +70,15 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-    public function rules()
+    public function rules($id = null)
     {
         return [
             'name' => 'required|string|min:5|max:255',
-            'email' => 'required|unique:users|email|string|max:255',
+            'email' => 'required|email|string|max:255|'.Rule::unique('users')->ignore($id),
             'telephone_ddd' => 'required|integer',
             'telephone' => 'required|integer',
             'telephone_whatsapp' => 'sometimes|boolean',
-            'password' => 'required|confirmed|string|min:8',
+            'password' => 'sometimes|required|confirmed|string|min:8',
         ];
     }
 

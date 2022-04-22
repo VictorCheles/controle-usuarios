@@ -20,10 +20,10 @@ class UsersController extends Controller
         $this->user = new User();
     }
 
-    public function validation($request)
+    public function validation($request,$id=null)
     {
         //validar Post
-        $validator = Validator::make($request,$this->user->rules(),$this->user->feedback());
+        $validator = Validator::make($request,$this->user->rules($id),$this->user->feedback());
 
         if($validator->fails()){
             return response()->json(['errors' => 
@@ -108,7 +108,10 @@ class UsersController extends Controller
      */
     public function update(Request $request,User $user)
     {
-      
+        $validacao = $this->validation($request->all(),$user->id);
+        
+        if($validacao) return $validacao;
+
         $user->fill([
             'name' => $request->name,
             'email' => $request->email,
