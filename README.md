@@ -38,7 +38,7 @@ composer install
     # Correção de incompatibilidade com PHP 8, que será apresentada no terminal da seguinte forma:
         Problem 1
             - lcobucci/jwt is locked to version 4.0 and an update of this package was not requested.
-            - lcobucci/jwt 4.0 requires php ^5.6 || ^7.0 -> your php version (8.1.2) does not satisfy that requirement.
+            - lcobucci/jwt 4.0 requires php ^5.6 || ^7.0 -> your php version (8.X.X) does not satisfy that requirement.
         Problem 2
             - tymon/jwt-auth is locked to version 1.0.2 and an update of this package was not requested.
             - tymon/jwt-auth 1.0.2 requires lcobucci/jwt <3.4 -> found lcobucci/jwt[4.0] but it does not match the constraint.
