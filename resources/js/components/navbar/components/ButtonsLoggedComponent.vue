@@ -36,24 +36,26 @@ export default {
         logout(){
             this.$store.dispatch('tokenLogout',false)
             this.$router.push({name: 'index'});
+        },
+        meDados(){
+            let config = {
+            headers:{
+                'Content-Type' : 'multipart/form-data',
+                'Accept' : 'application/json',
+                'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
+            }
+        }
+        axios.get(this.url,config)
+            .then((response) => {
+                    this.user = response.data
+            })
+            .catch((e) => {
+                console.log(e.message)
+            })
         }
     },
     mounted(){
-        
-            let config = {
-                headers:{
-                    'Content-Type' : 'multipart/form-data',
-                    'Accept' : 'application/json',
-                    'Authorization' : `Bearer ${this.$store.getters.token.login.token}`
-                }
-            }
-            axios.get(this.url,config)
-                .then((response) => {
-                        this.user = response.data
-                })
-                .catch((e) => {
-                    console.log(e.message)
-                })
+        this.meDados()           
     }
 }
 </script>

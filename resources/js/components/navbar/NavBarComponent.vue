@@ -4,8 +4,8 @@
 
             <div class="container-fluid">
              <a class="navbar-brand mx-2" href="#">
-                <img src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-                Bootstrap
+                <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+               Controle de Usuários |
             </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">

@@ -84,9 +84,13 @@
                           <span class="text-primary"><router-link to="/" class="text-decoration-none">Entrar</router-link></span>
                       </p>
                   </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                      <button type="button" class="btn btn-secondary"><router-link to="/list" class="text-decoration-none text-white">Voltar</router-link></button>
+                    </div>
               </div>
           </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -265,4 +269,5 @@ export default {
 .bg-photo-profile img{
     border-radius: 50%;
 }
+
 </style>

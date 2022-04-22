@@ -44,7 +44,7 @@ composer install
             - tymon/jwt-auth 1.0.2 requires lcobucci/jwt <3.4 -> found lcobucci/jwt[4.0] but it does not match the constraint.
         
         # Correção:
-           - composer require tymon/jwt-auth --with-all-dependencies
+           - composer require -w tymon/jwt-auth --ignore-platform-reqs
 
 # Configurar variáveis de ambiente
 cp .env.example .env
@@ -65,6 +65,9 @@ php artisan storage:link
 ``` bash
 # Atualizar dependências
 npm install
+
+# Rodar em ambiente local 127.0.0.1:8080
+npm run dev
 
 ## Iniciar o servidor web
 php artisan serve --port=8000
