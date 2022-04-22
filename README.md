@@ -66,9 +66,6 @@ php artisan storage:link
 # Atualizar dependências
 npm install
 
-# Rodar em ambiente local 127.0.0.1:8080
-npm run dev
-
 ## Iniciar o servidor web
 php artisan serve --port=8000
 
