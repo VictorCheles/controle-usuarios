@@ -72,8 +72,12 @@ class UploadController extends Controller
     {   
         $upload = Upload::find($id);
 
-        Storage::deleteDirectory($upload->url);
-
+        if($upload->url !== null){
+            Storage::disk('public')->delete($upload->url);
+            $dir = explode('/',$upload->url);
+            Storage::disk('public')->deleteDirectory($dir[0]);
+        }
+        
         $upload->fill([
             'url' => $file->store('user_id_'.$upload->user_id.'_'.uniqid(),'public'),
             'user_id' => $upload->user_id

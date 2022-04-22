@@ -108,10 +108,7 @@ class UsersController extends Controller
      */
     public function update(Request $request,User $user)
     {
-        $validacao = $this->validation($request->all());
-        
-        if($validacao) return $validacao;
-
+      
         $user->fill([
             'name' => $request->name,
             'email' => $request->email,
