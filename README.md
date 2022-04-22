@@ -62,7 +62,7 @@ php artisan serve --port=8000
 
 ## Login
 O usuário de teste é:
-```
+
 email:    contato@devcheles.com.br
 password: 123456
 ```
