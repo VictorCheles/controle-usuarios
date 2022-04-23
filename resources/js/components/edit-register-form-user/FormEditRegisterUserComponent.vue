@@ -174,6 +174,13 @@ export default {
           })
     },
     newFile(event){
+      if(event.target.files[0].size > 8388608){
+            this.displayAlert = 'd-inline'
+            this.typeAlert = 'danger'
+            this.msgAlert = 'Erro! A imagem tem mais que 8MB'
+            this.msgErrors = e.response.data.errors
+            return false
+      }
       this.profile_photo = event.target.files[0]
     },
     enviar(id){
@@ -254,6 +261,7 @@ export default {
             this.typeAlert = 'danger'
             this.msgAlert = 'Erro ao tentar editar os dados! - Status: '+ e.response.status
             this.msgErrors = e.response.data.errors
+            setTimeout( () => this.$router.go(0), 2000)
         })
     }
   }

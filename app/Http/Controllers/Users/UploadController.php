@@ -96,7 +96,6 @@ class UploadController extends Controller
      */
     public function destroy($user_id)
     {
-        
         $photo = Upload::where('user_id',$user_id)->first();
 
         if($photo == null){
@@ -106,7 +105,6 @@ class UploadController extends Controller
         $file_url = $photo->url;
 
         if($photo->delete() && $this->fileDelete($file_url)){
-
             return true;
         }
 

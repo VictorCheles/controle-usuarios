@@ -5458,6 +5458,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     newFile: function newFile(event) {
+      if (event.target.files[0].size > 8388608) {
+        this.displayAlert = 'd-inline';
+        this.typeAlert = 'danger';
+        this.msgAlert = 'Erro! A imagem tem mais que 8MB';
+        this.msgErrors = e.response.data.errors;
+        return false;
+      }
+
       this.profile_photo = event.target.files[0];
     },
     enviar: function enviar(id) {
@@ -5538,6 +5546,9 @@ __webpack_require__.r(__webpack_exports__);
         _this3.typeAlert = 'danger';
         _this3.msgAlert = 'Erro ao tentar editar os dados! - Status: ' + e.response.status;
         _this3.msgErrors = e.response.data.errors;
+        setTimeout(function () {
+          return _this3.$router.go(0);
+        }, 2000);
       });
     }
   }
@@ -5811,11 +5822,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios["delete"](url, config).then(function (response) {
-        _this2.displayAlert = 'd-inline';
-        _this2.typeAlert = 'success';
-        _this2.msgAlert = 'Usuário removido com sucesso';
-        _this2.listItens = response.data;
-
         _this2.listar();
       })["catch"](function (e) {
         console.log(e.message);
@@ -5834,7 +5840,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -31106,10 +31111,6 @@ var render = function () {
                       ],
                       1
                     ),
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-center text-primary" }, [
-                    _vm._v("Esqueceu a sua senha?"),
                   ]),
                 ]),
               ]

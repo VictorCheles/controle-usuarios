@@ -37,7 +37,6 @@
                                 <p class="text-center mt-5">Você possue cadastro?
                                     <span class="text-primary" ><router-link to="/register" class="text-decoration-none">Cadastrar-se</router-link></span>
                                 </p>
-                                <p class="text-center text-primary">Esqueceu a sua senha?</p>
                             </div>
                     </div>
                 </div>

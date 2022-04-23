@@ -87,10 +87,6 @@ export default {
             }
             axios.delete(url,config)
                 .then((response) => {
-                    this.displayAlert = 'd-inline'
-                    this.typeAlert = 'success'
-                    this.msgAlert = 'Usuário removido com sucesso'
-                    this.listItens = response.data
                     this.listar()
                 })
                 .catch((e) => {

@@ -146,8 +146,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-    {
-
+    {       
         $photo = new UploadController();
         
         if(!$photo->destroy($user->id)){
@@ -160,5 +159,6 @@ class UsersController extends Controller
         }
 
         return response()->json(['errors' =>['error' =>'Ocorreu um erro inesperado!']], 400);
+        
     }
 }
