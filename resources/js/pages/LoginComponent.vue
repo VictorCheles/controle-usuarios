@@ -25,11 +25,11 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary"><i
                                             class="bi bi-key-fill text-white"></i></span>
-                                    <input type="password" class="form-control" name="password" placeholder="Senha" v-model="password">
+                                    <input type="password" class="form-control" name="password" placeholder="Senha" @keyup.enter="login()" v-model="password">
                                 </div>
 
                                 <div class="text-center">
-                                    <button class="btn btn-primary text-center mt-2" type="button" @click="login()">
+                                    <button class="btn btn-primary text-center mt-2" type="button" @click="login()" >
                                         Entrar
                                     </button>
                                 </div>
