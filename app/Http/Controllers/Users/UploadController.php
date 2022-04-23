@@ -73,9 +73,7 @@ class UploadController extends Controller
         $upload = Upload::find($id);
 
         if($upload->url !== null){
-            Storage::disk('public')->delete($upload->url);
-            $dir = explode('/',$upload->url);
-            Storage::disk('public')->deleteDirectory($dir[0]);
+            $this->fileDelete($upload->url);
         }
         
         $upload->fill([
@@ -96,8 +94,37 @@ class UploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
-        //
+        
+        $photo = Upload::where('user_id',$user_id)->first();
+
+        if($photo == null){
+            return true;
+        }
+
+        $file_url = $photo->url;
+
+        if($photo->delete() && $this->fileDelete($file_url)){
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function fileDelete($file_url){
+
+        if(!Storage::disk('public')->delete($file_url)){
+            return false;
+        }
+
+        $dir = explode('/',$file_url);
+
+        if(!Storage::disk('public')->deleteDirectory($dir[0])){
+            return false;
+        }
+
+        return true;
     }
 }

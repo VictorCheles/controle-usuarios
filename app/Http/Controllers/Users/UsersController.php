@@ -147,6 +147,13 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+
+        $photo = new UploadController();
+        
+        if(!$photo->destroy($user->id)){
+            return response()->json(['errors' =>['error' =>'Ocorreu um erro inesperado!']], 400);
+        }
+
         if($user->delete())
         {
             return response()->json(['success' => 'Registro deletado com sucesso!'], 201);
