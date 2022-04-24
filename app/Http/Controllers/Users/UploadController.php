@@ -11,6 +11,13 @@ use App\Models\Upload;
 
 class UploadController extends Controller
 {
+    private $extensios = [
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
+    ];  
+
     public function __construct()
     {
         $this->files = new Upload();
@@ -111,7 +118,8 @@ class UploadController extends Controller
         return false;
     }
 
-    public function fileDelete($file_url){
+    public function fileDelete($file_url)
+    {
 
         if(!Storage::disk('public')->delete($file_url)){
             return false;
@@ -124,5 +132,17 @@ class UploadController extends Controller
         }
 
         return true;
+    }
+
+    public function getExtension($file)
+    {
+        return $file->extension();
+    }
+
+    public function validationExtension($file)
+    {
+        $extension = $this->getExtension($file);
+
+        return in_array($extension,$this->extensios);
     }
 }

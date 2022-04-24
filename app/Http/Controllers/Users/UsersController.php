@@ -108,9 +108,21 @@ class UsersController extends Controller
      */
     public function update(Request $request,User $user)
     {
+        //validacao do form
         $validacao = $this->validation($request->all(),$user->id);
         
         if($validacao) return $validacao;
+
+        //validacao do arquivo
+        $save_file = new UploadController();
+        if($request->new_file){
+            $extension_valid = $save_file->validationExtension($request->new_file);
+        }
+
+        if(!$extension_valid)
+        {
+            return response()->json(['errors' =>['especific' =>['Imagem de Perfil' => ['Extensão não suportada de arquivo!']],'error' => 'Extensões aceitas: JPG,GIF,PNG']], 400);
+        };
 
         $user->fill([
             'name' => $request->name,
@@ -124,11 +136,11 @@ class UsersController extends Controller
         if($save = $user->save())
         {
             if($request->file('new_file') !== NULL){
-                $save_file = new UploadController();
+                
+               
                 $response = $save_file->store($request->file('new_file'),$user->id);
 
                 if($response){
-                    return $response;
                     return response()->json(['success' => $save,'photo' => true], 201);
                 }
 

@@ -66,7 +66,7 @@
                           <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Senha" v-model="password_confirmation">
                       </div>
                       <div class="input-group mb-3">
-                        <label for="inputGroupFile04" class="form-label">Selecione uma imagem para o seu perfil:</label> 
+                        <label for="inputGroupFile04" class="form-label">Selecione uma imagem para o seu perfil: <small>(Extensões aceitas: JPG, GIF e PNG')</small></label> 
                         <div class="input-group">
                           <input type="file" class="form-control" name="profile_picture" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" @change="newFile">
                         </div>
@@ -253,8 +253,6 @@ export default {
             this.typeAlert = 'success'
             this.msgAlert = 'Sucesso! Edição realizada com sucesso!'
             this.consultUser(this.edit)
-            
-            //setTimeout( () => this.$router.push({ name: 'list'}), 3000)
         })
         .catch((e) => {
             this.displayAlert = 'd-inline'
