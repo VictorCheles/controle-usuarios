@@ -30220,7 +30220,7 @@ var render = function () {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "email",
+                            type: "number",
                             name: "telephone_ddd",
                             placeholder: "DDD",
                           },
@@ -30252,7 +30252,7 @@ var render = function () {
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "email",
+                            type: "number",
                             name: "telephone",
                             placeholder: "Telefone",
                           },

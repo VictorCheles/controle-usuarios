@@ -37,17 +37,17 @@
                           <div class="input-group mb-1">
                             <span class="input-group-text bg-primary">
                               <i class="bi bi-envelope text-white"></i></span>
-                            <input type="email" class="form-control" name="telephone_ddd" placeholder="DDD" v-model="telephone_ddd">
+                            <input type="number" class="form-control" name="telephone_ddd" placeholder="DDD" v-model="telephone_ddd">
                           </div>
                         </div>
                         <div class="col-8">
                           <div class="input-group mb-3">
                             <span class="input-group-text bg-primary">
                               <i class="bi bi-envelope text-white"></i></span>
-                            <input type="email" class="form-control" name="telephone" placeholder="Telefone" v-model="telephone">
+                            <input type="number" class="form-control" name="telephone" placeholder="Telefone" v-model="telephone">
                           </div>
                         </div>
-                      </div>
+                      </div> 
                       <div class="input-group mb-3">
                         <input class="form-check-input" type="checkbox" value="1" name="telephone_whatsapp" id="flexCheckChecked" :checked="telephone_whatsapp" v-model="telephone_whatsapp">
                         <label class="form-check-label mx-2" for="flexCheckChecked">
