@@ -11,7 +11,7 @@ use App\Models\Upload;
 
 class UploadController extends Controller
 {
-    private $extensios = [
+    private $extensions = [
         'png',
         'jpg',
         'jpeg',
@@ -143,6 +143,6 @@ class UploadController extends Controller
     {
         $extension = $this->getExtension($file);
 
-        return in_array($extension,$this->extensios);
+        return in_array($extension,$this->extensions);
     }
 }
